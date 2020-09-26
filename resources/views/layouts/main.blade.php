@@ -11,6 +11,8 @@
   <title>@yield('title')</title>
 </head>
 <body>
-  @yield('content')
+  <div class="main_box">
+    @yield('content')
+  </div>
 </body>
 </html>

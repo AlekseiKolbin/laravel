@@ -1,0 +1,30 @@
+.main_box{
+  width: 1000px;
+  margin: auto;
+}
+
+.content_users_card{
+
+}
+
+.card{
+  margin-bottom: 15px;
+  margin-right: 15px;
+  margin-left: 15px;
+  float: left;
+  width: 18rem;
+}
+
+.user_profile_id{
+  float: left;
+  width: 1000px;
+}
+
+.user_profile_mes_form{
+  width: -webkit-fill-available;
+  float: left;
+}
+
+.cardin{
+  width: -webkit-fill-available;
+}

@@ -16,7 +16,8 @@ class MainController extends Controller
     return view('mycomments');
   }
   public function userslist(){
-    return view('userslist');
+    $users = \App\Models\User::get();
+    return view('userslist', compact('users'));
   }
   public function library(){
     return view('library');
