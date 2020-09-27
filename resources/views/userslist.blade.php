@@ -9,7 +9,7 @@
   <div class="card">
   <div class="card-body">
     <h5 class="card-title">Пользователь №: {{$user->id}}</h5>
-    <a href="#" class="btn btn-primary">Профиль</a>
+    <a href="{{ route('profile', ['id' => $user->id]) }}" class="btn btn-primary">Профиль</a>
   </div>
 </div>
   @endforeach

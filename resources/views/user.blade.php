@@ -6,7 +6,8 @@
 <div class="user_profile_id">
   <div class="cardin">
     <div class="card-body">
-      This is some text within a card body.
+      @if(Auth::user()->id != $user->id)
+        Пользователь №: {{$user->id}}
     </div>
   </div>
 </div>
@@ -31,6 +32,9 @@
     </div>
   </form>
 </div>
+@else
+  Моя страница
+@endif
 <div>
   <div class="card" style="width: -webkit-fill-available; margin: 0px;">
   <div class="card-header">

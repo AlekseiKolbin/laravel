@@ -6,7 +6,7 @@
   @endif
   <nav class="my-2 my-md-0 mr-md-3">
     @if(Auth::check())
-    <a class="p-2 text-dark" href="{{ route('user') }}">Мой профиль</a>
+    <a class="p-2 text-dark" href="{{ route('profile', ['id' => Auth::user()->id]) }}">Мой профиль</a>
     <a class="p-2 text-dark" href="{{ route('mycomments') }}">Мои коментарии</a>
     @endif
     <a class="p-2 text-dark" href="{{ route('main') }}">Пользователи</a>

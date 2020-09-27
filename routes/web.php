@@ -20,6 +20,8 @@ Route::post('/auth', 'App\Http\Controllers\AuthController@postAuth');
 
 Route::get('/signout', 'App\Http\Controllers\AuthController@getSignout')->name('signout');
 
+Route::get('/user/{id}', 'App\Http\Controllers\ProfileController@getProfile')->name('profile');
+
 Route::get('/user', 'App\Http\Controllers\MainController@user')->name('user');
 Route::get('/user/mycomments', 'App\Http\Controllers\MainController@mycomments')->name('mycomments');
 Route::get('/', 'App\Http\Controllers\MainController@userslist')->name('main');
