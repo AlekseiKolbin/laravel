@@ -12,9 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/reg', 'App\Http\Controllers\AuthController@getReg')->middleware('guest')->name('reg');
+Route::post('/reg', 'App\Http\Controllers\AuthController@postReg');
 
-Route::get('/auth', 'App\Http\Controllers\MainController@auth');
-Route::get('/user', 'App\Http\Controllers\MainController@user');
-Route::get('/user/mycomments', 'App\Http\Controllers\MainController@mycomments');
-Route::get('/', 'App\Http\Controllers\MainController@userslist');
-Route::get('/library', 'App\Http\Controllers\MainController@library');
+Route::get('/auth', 'App\Http\Controllers\AuthController@getAuth')->middleware('guest')->name('auth');
+Route::post('/auth', 'App\Http\Controllers\AuthController@postAuth');
+
+Route::get('/signout', 'App\Http\Controllers\AuthController@getSignout')->name('signout');
+
+Route::get('/user', 'App\Http\Controllers\MainController@user')->name('user');
+Route::get('/user/mycomments', 'App\Http\Controllers\MainController@mycomments')->name('mycomments');
+Route::get('/', 'App\Http\Controllers\MainController@userslist')->name('main');
+Route::get('/library', 'App\Http\Controllers\MainController@library')->name('library');

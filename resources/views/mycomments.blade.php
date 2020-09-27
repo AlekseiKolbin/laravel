@@ -2,5 +2,5 @@
 @section('title')Мои коментарии@endsection
 
 @section('content')
-@include('include/userprofile')
+@include('include/header')
 @endsection

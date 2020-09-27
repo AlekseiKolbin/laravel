@@ -4,6 +4,7 @@
 @section('content')
 @include('include/header')
 <div class="content_users_card">
+  <div class="row"></div>
   @foreach($users as $user)
   <div class="card">
   <div class="card-body">

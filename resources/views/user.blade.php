@@ -2,7 +2,7 @@
 @section('title')Страница пользователя@endsection
 
 @section('content')
-@include('include/userprofile')
+@include('include/header')
 <div class="user_profile_id">
   <div class="cardin">
     <div class="card-body">
