@@ -7,19 +7,13 @@
   <h3>Нет коментариев</h3>
 @else
   @foreach($datas as $data)
-
-  <div>
-    <div class="card" style="width: -webkit-fill-available; margin: 0px;">
-    <div class="card-header">
-      {{ $data->title }}
-    </div>
-    <div class="card-body">
-      <blockquote class="blockquote mb-0">
-        <p>{{ $data->message }}</p>
-      </blockquote>
-    </div>
-  </div>
-</div>
+  <div class="card" style="width: -webkit-fill-available;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><a href="{{ route('profile', ['id' => $data->user_id]) }}">Пользователь №: {{$data->user_id}}</a></li>
+      <li class="list-group-item">Заголовок сообщения: {{ $data->title }}</li>
+      <li class="list-group-item">Текст сообщения: {{ $data->message }}</li>
+    </ul>
+  </div><br>
   @endforeach
 @endif
 @endsection

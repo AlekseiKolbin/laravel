@@ -12,7 +12,7 @@
   <title>@yield('title')</title>
 </head>
 <body>
-  <div class="main_box">
+  <div class="main_box" style="width: 1000px; margin: auto;">
     @yield('content')
   </div>
 </body>

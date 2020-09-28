@@ -6,9 +6,9 @@
 <div class="user_profile_id">
   <div class="cardin">
     <div class="card-body">
-      @if(Auth::user())
-        @if(Auth::user()->id != $user->id)
-          Пользователь №: {{$user->id}}
+        @if(Auth::user())
+          @if(Auth::user()->id != $user->id)
+            Пользователь №: {{$user->id}}
     </div>
   </div>
 </div>
@@ -36,6 +36,7 @@
     @if($errors->has('message')) <span class="help-block text-danger">{{ $errors->first('message') }}</span> @endif
   </form>
 </div>
+
   @else
     Моя страница
   @endif
@@ -43,17 +44,41 @@
   Пользователь №: {{$user->id}}
 @endif
 @foreach($datas as $data)
-<div>
-  <div class="card" style="width: -webkit-fill-available; margin: 0px;">
-  <div class="card-header">
-    {{ $data->title }}
-  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p>{{ $data->message }}</p>
-    </blockquote>
-  </div>
-</div>
-</div>
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><a href="{{ route('profile', ['id' => $data->profile_id]) }}">Пользователь №: {{$data->profile_id}}</a></li>
+    <li class="list-group-item">Заголовок сообщения: {{ $data->title }}</li>
+    <li class="list-group-item">Текст сообщения: {{ $data->message }}</li>
+    @if(Auth::user())
+      @if(Auth::user()->id == $user->id)
+      <li class="list-group-item">
+        <div class="user_profile_mes_form">
+          <form method="post" action="#">
+            @csrf
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-2 col-form-label">Заголовок сообщения</label>
+              <div class="col-sm-10">
+                <input name="title" type="text" class="form-control" placeholder="Заголовок сообщения">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Текст сообщения</label>
+              <div class="col-sm-10">
+                <input name="message" type="text" class="form-control" id="inputPassword3" placeholder="Текст сообщения">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Ответить</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+      @endif
+    @endif
+  </ul>
+</div><br>
+
 @endforeach
 @endsection
