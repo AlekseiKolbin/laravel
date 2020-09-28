@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Message;
+use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
@@ -13,7 +15,7 @@ class MainController extends Controller
     return view('user');
   }
   public function mycomments(){
-    return view('mycomments');
+    return view('mycomments', ['datas' => Message::where('profile_id', Auth::user()->id)->get()]);
   }
   public function userslist(){
     $users = \App\Models\User::get();

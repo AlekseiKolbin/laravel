@@ -22,7 +22,12 @@ Route::get('/signout', 'App\Http\Controllers\AuthController@getSignout')->name('
 
 Route::get('/user/{id}', 'App\Http\Controllers\ProfileController@getProfile')->name('profile');
 
+
+
+
+Route::post('/user/{id}', 'App\Http\Controllers\MessageController@postMessage')->middleware('auth')->name('reply');
+
 Route::get('/user', 'App\Http\Controllers\MainController@user')->name('user');
-Route::get('/user/mycomments', 'App\Http\Controllers\MainController@mycomments')->name('mycomments');
+Route::get('/mycomments', 'App\Http\Controllers\MainController@mycomments')->name('mycomments');
 Route::get('/', 'App\Http\Controllers\MainController@userslist')->name('main');
 Route::get('/library', 'App\Http\Controllers\MainController@library')->name('library');
