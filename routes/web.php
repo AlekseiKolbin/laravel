@@ -18,6 +18,8 @@ Route::post('/reg', 'App\Http\Controllers\AuthController@postReg');
 Route::get('/auth', 'App\Http\Controllers\AuthController@getAuth')->middleware('guest')->name('auth');
 Route::post('/auth', 'App\Http\Controllers\AuthController@postAuth');
 
+Route::post('/user/delete', 'App\Http\Controllers\MessageController@postDelete')->middleware('auth')->name('delete');
+
 Route::get('/signout', 'App\Http\Controllers\AuthController@getSignout')->name('signout');
 
 Route::get('/user/{id}', 'App\Http\Controllers\ProfileController@getProfile')->name('profile');
