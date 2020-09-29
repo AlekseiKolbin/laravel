@@ -22,10 +22,8 @@ Route::get('/signout', 'App\Http\Controllers\AuthController@getSignout')->name('
 
 Route::get('/user/{id}', 'App\Http\Controllers\ProfileController@getProfile')->name('profile');
 
-
-
-
-Route::post('/user/{id}', 'App\Http\Controllers\MessageController@postMessage')->middleware('auth')->name('reply');
+Route::post('/user/{id}', 'App\Http\Controllers\MessageController@postMessage')->middleware('auth')->name('message');
+Route::post('/user/{messageId}/reply', 'App\Http\Controllers\MessageController@postReply')->middleware('auth')->name('reply');
 
 Route::get('/user', 'App\Http\Controllers\MainController@user')->name('user');
 Route::get('/mycomments', 'App\Http\Controllers\MainController@mycomments')->name('mycomments');

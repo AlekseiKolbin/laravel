@@ -17,4 +17,9 @@ class Message extends Model
   {
     return $this->belongsTo('App\Models\User', 'profile_id');
   }
+
+  public function replies()
+  {
+    return $this->hasMany('App\Models\Message', 'message_id');
+  }
 }

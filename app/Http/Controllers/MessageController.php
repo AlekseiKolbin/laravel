@@ -17,8 +17,8 @@ class MessageController extends Controller
 
 
     $this->validate($request, [
-      'message' => 'required|max:50',
-      'title' =>  'required|max:250|min:10',
+      'message' => 'required|max:250|min:10',
+      'title' =>  'required|max:50',
     ]);
 
     Auth::user()->message()->create([
@@ -26,6 +26,28 @@ class MessageController extends Controller
       'message' => $request->input('message'),
       'title' => $request->input('title'),
     ]);
+
+    return redirect()->back();
+  }
+
+  public function postReply(Request $request, $messageId)
+  {
+    $this->validate($request, [
+      "reply-{$messageId}" => 'required|max:50',
+    ]);
+
+    $mes = Message::find($messageId);
+
+    if( !$mes)
+    {
+      return redirect()->back();
+    }
+
+    $reply = new Message();
+    $reply->user()->associate(Auth::user());
+    $reply->message = $request->input('message');
+    $reply->title = $request->input("reply-{$messageId}");
+    $mes->replies()->save($reply);
 
     return redirect()->back();
   }
