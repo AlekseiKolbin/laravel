@@ -49,7 +49,15 @@
     <li class="list-group-item"><a href="{{ route('profile', ['id' => $data->profile_id]) }}">Пользователь №: {{$data->profile_id}}</a></li>
     <li class="list-group-item">Заголовок сообщения: {{ $data->title }}</li>
     <li class="list-group-item">Текст сообщения: {{ $data->message }}</li>
-    @if(Auth::user()->id == $data->profile_id)
+    @if(Auth::user()->id == $user->id)
+    <form method="post" action="{{ route('delete') }}">
+      @csrf
+      <input type="number" class="d-none" name="messageId" id="{{ $data->id }}" value="{{ $data->id }}">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">Удалить комментарий</button>
+      </div>
+    </form>
+    @elseif(Auth::user()->id == $data->profile_id)
     <form method="post" action="{{ route('delete') }}">
       @csrf
       <input type="number" class="d-none" name="messageId" id="{{ $data->id }}" value="{{ $data->id }}">
