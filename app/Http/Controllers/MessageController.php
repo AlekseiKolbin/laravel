@@ -55,9 +55,10 @@ class MessageController extends Controller
   public function postDelete(Request $request)
   {
     $mes = Message::find($request->messageId);
+    $clean = Message::get()->where('message_id', $request->messageId);
     if(Auth::user()->id == $mes->user_id || Auth::user()->id == $mes->profile_id)
     {
-      if($mes->message_id == NULL)
+      if(!$clean->isempty())
       {
         $mes->update(['title' => 'Сообщение удалено', 'message' => 'Сообщение удалено']);
       }
