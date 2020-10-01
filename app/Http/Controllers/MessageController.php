@@ -70,4 +70,9 @@ class MessageController extends Controller
     return redirect()->back();
   }
 
+  public function ajaxMessages(Request $request)
+  {
+    $comments = Message::where('user_id', $request->user)->get()->sortByDesc('created_at')->skip(5);
+    return view('include.message', ['user' => $request->user, 'datas' => $comments]);
+  }
 }

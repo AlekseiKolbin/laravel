@@ -12,7 +12,7 @@ class ProfileController extends Controller
   public function getProfile($id)
   {
     $user = User::where('id', $id)->first();
-    $datas = Message::where('user_id', $user->id)->get();
+    $datas = Message::where('user_id', $user->id)->get()->sortByDesc('created_at')->forPage(0, 5);
     if (!$user)
     {
       abort(404);
