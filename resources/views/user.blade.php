@@ -3,6 +3,9 @@
 
 @section('content')
 @include('include/header')
+@if (Auth::guest())
+@include('include/guest')
+@else
 <div class="user_profile_id">
   <div class="cardin">
     <div class="card-body">
@@ -140,4 +143,5 @@
     });
   };
 </script>
+@endif
 @endsection

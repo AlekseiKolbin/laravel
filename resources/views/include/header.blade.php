@@ -8,9 +8,9 @@
     @if(Auth::check())
     <a class="p-2 text-dark" href="{{ route('profile', ['id' => Auth::user()->id]) }}">Мой профиль</a>
     <a class="p-2 text-dark" href="{{ route('mycomments') }}">Мои коментарии</a>
+    <a class="p-2 text-dark" href="{{ route('profileBook', ['id' => Auth::user()->id]) }}">Библиотека</a>
     @endif
     <a class="p-2 text-dark" href="{{ route('main') }}">Пользователи</a>
-    <a class="p-2 text-dark" href="{{ route('profileBook', ['id' => Auth::user()->id]) }}">Библиотека</a>
   </nav>
   @if(Auth::check())
   <a class="btn btn-outline-primary" href="{{ route('signout') }}">Выйти</a>

@@ -22,7 +22,7 @@ Route::post('/user/delete', 'App\Http\Controllers\MessageController@postDelete')
 
 Route::get('/signout', 'App\Http\Controllers\AuthController@getSignout')->name('signout');
 
-Route::get('/user/{id}', 'App\Http\Controllers\ProfileController@getProfile')->middleware('auth')->name('profile');
+Route::get('/user/{id}', 'App\Http\Controllers\ProfileController@getProfile')->name('profile');
 
 Route::post('/ajax/message', 'App\Http\Controllers\MessageController@ajaxMessages')->name('ajax');
 
@@ -35,10 +35,13 @@ Route::get('/library/{id}', 'App\Http\Controllers\LibraryController@getProfileBo
 Route::post('/library/delete', 'App\Http\Controllers\LibraryController@postDelete')->middleware('auth')->name('deleteBook');
 
 
-Route::get('/library/book/{id}', 'App\Http\Controllers\LibraryController@getRead')->middleware('auth')->name('readBook');
+Route::get('/library/book/{id}/{userId}', 'App\Http\Controllers\LibraryController@getRead')->middleware('auth')->name('readBook');
 
 Route::get('/book', 'App\Http\Controllers\BookController@getBook')->middleware('auth')->name('book');
 Route::post('/book', 'App\Http\Controllers\BookController@postBook');
+
+Route::get('/change/{id}/{userId}', 'App\Http\Controllers\BookController@getChange')->middleware('auth')->name('change');
+Route::post('/change/{id}/{userId}', 'App\Http\Controllers\BookController@postChange');
 
 
 
