@@ -44,4 +44,9 @@ class User extends Authenticatable
     {
       return $this->hasMany('App\Models\Message', 'profile_id');
     }
+
+    public function library()
+    {
+      return $this->hasMany('App\Models\Library', 'profile_id');
+    }
 }

@@ -10,7 +10,7 @@
     <a class="p-2 text-dark" href="{{ route('mycomments') }}">Мои коментарии</a>
     @endif
     <a class="p-2 text-dark" href="{{ route('main') }}">Пользователи</a>
-    <a class="p-2 text-dark" href="{{ route('library') }}">Библиотека</a>
+    <a class="p-2 text-dark" href="{{ route('profileBook', ['id' => Auth::user()->id]) }}">Библиотека</a>
   </nav>
   @if(Auth::check())
   <a class="btn btn-outline-primary" href="{{ route('signout') }}">Выйти</a>

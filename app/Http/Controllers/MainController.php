@@ -11,17 +11,11 @@ class MainController extends Controller
   public function auth(){
     return view('auth');
   }
-  public function user(){
-    return view('user');
-  }
   public function mycomments(){
     return view('mycomments', ['datas' => Message::where('profile_id', Auth::user()->id)->get()]);
   }
   public function userslist(){
     $users = \App\Models\User::get();
     return view('userslist', compact('users'));
-  }
-  public function library(){
-    return view('library');
   }
 }

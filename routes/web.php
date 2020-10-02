@@ -22,14 +22,26 @@ Route::post('/user/delete', 'App\Http\Controllers\MessageController@postDelete')
 
 Route::get('/signout', 'App\Http\Controllers\AuthController@getSignout')->name('signout');
 
-Route::get('/user/{id}', 'App\Http\Controllers\ProfileController@getProfile')->name('profile');
+Route::get('/user/{id}', 'App\Http\Controllers\ProfileController@getProfile')->middleware('auth')->name('profile');
 
 Route::post('/ajax/message', 'App\Http\Controllers\MessageController@ajaxMessages')->name('ajax');
 
 Route::post('/user/{id}', 'App\Http\Controllers\MessageController@postMessage')->middleware('auth')->name('message');
 Route::post('/user/{messageId}/reply', 'App\Http\Controllers\MessageController@postReply')->middleware('auth')->name('reply');
 
-Route::get('/user', 'App\Http\Controllers\MainController@user')->name('user');
+
+
+Route::get('/library/{id}', 'App\Http\Controllers\LibraryController@getProfileBook')->middleware('auth')->name('profileBook');
+Route::post('/library/delete', 'App\Http\Controllers\LibraryController@postDelete')->middleware('auth')->name('deleteBook');
+
+
+Route::get('/library/book/{id}', 'App\Http\Controllers\LibraryController@getRead')->middleware('auth')->name('readBook');
+
+Route::get('/book', 'App\Http\Controllers\BookController@getBook')->middleware('auth')->name('book');
+Route::post('/book', 'App\Http\Controllers\BookController@postBook');
+
+
+
+
 Route::get('/mycomments', 'App\Http\Controllers\MainController@mycomments')->name('mycomments');
 Route::get('/', 'App\Http\Controllers\MainController@userslist')->name('main');
-Route::get('/library', 'App\Http\Controllers\MainController@library')->name('library');
