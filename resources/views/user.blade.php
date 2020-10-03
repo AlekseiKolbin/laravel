@@ -15,6 +15,13 @@
     </div>
   </div>
 </div>
+<form method="post" action="{{ route('access') }}">
+  @csrf
+  <input type="number" class="d-none" name="bookId" id="{{ $user->id }}" value="{{ $user->id }}">
+  <div class="col-sm-10">
+    <button type="submit" class="btn btn-primary">{{ $text }}</button>
+  </div>
+</form>
 <div class="user_profile_mes_form">
   <form method="post" action="{{ route('message', ['id' => $user->id])}}">
     @csrf

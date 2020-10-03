@@ -3,6 +3,7 @@
 
 @section('content')
 @include('include/header')
+<a class="btn btn-outline-primary" href="{{ route('trust') }}">Доверенные книги</a><br>
 @if(Auth::user()->id == $user->id)
 <a class="btn btn-outline-primary" href="{{ route('book') }}">Создать книгу</a><br>
 @endif

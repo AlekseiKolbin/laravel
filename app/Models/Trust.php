@@ -5,12 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Library extends Model
+class Trust extends Model
 {
   protected $fillable = [
-    'text',
-    'title',
+    'user_id',
+    'trusted_id',
   ];
-
-
 }

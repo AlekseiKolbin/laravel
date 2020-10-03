@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
 use App\Models\User;
+use App\Models\Trust;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -68,6 +69,27 @@ class MessageController extends Controller
       }
     }
     return redirect()->back();
+  }
+
+  public function postAccess(Request $request)
+  {
+    $acsess = Trust::where('trusted_id', $request->bookId)->where('user_id', Auth::user()->id)->get();
+    if ($acsess->isEmpty())
+    {
+      Auth::user()->trust()->create([
+        'user_id' => Auth::user()->id,
+        'trusted_id' => $request->bookId,
+      ]);
+      return redirect()->back();
+    }
+    else
+    {
+      Auth::user()->trust()->delete([
+        'user_id' => Auth::user()->id,
+        'trusted_id' => $request->bookId,
+      ]);
+      return redirect()->back();
+    }
   }
 
   public function ajaxMessages(Request $request)

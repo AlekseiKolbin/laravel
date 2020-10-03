@@ -19,6 +19,7 @@ Route::get('/auth', 'App\Http\Controllers\AuthController@getAuth')->middleware('
 Route::post('/auth', 'App\Http\Controllers\AuthController@postAuth');
 
 Route::post('/user/delete', 'App\Http\Controllers\MessageController@postDelete')->middleware('auth')->name('delete');
+Route::post('/user/access', 'App\Http\Controllers\MessageController@postAccess')->middleware('auth')->name('access');
 
 Route::get('/signout', 'App\Http\Controllers\AuthController@getSignout')->name('signout');
 
@@ -30,12 +31,14 @@ Route::post('/user/{id}', 'App\Http\Controllers\MessageController@postMessage')-
 Route::post('/user/{messageId}/reply', 'App\Http\Controllers\MessageController@postReply')->middleware('auth')->name('reply');
 
 
-
+Route::get('/trbook', 'App\Http\Controllers\LibraryController@trustBook')->middleware('isTrust')->name('trust');
 Route::get('/library/{id}', 'App\Http\Controllers\LibraryController@getProfileBook')->middleware('auth')->name('profileBook');
 Route::post('/library/delete', 'App\Http\Controllers\LibraryController@postDelete')->middleware('auth')->name('deleteBook');
+Route::get('/library/book/{link}', 'App\Http\Controllers\LibraryController@getShare')->middleware('guest')->name('share');
 
 
 Route::get('/library/book/{id}/{userId}', 'App\Http\Controllers\LibraryController@getRead')->middleware('auth')->name('readBook');
+Route::get('/library/book/{id}/{userId}/{user}', 'App\Http\Controllers\LibraryController@trustRead')->middleware('auth')->name('trreadBook');
 
 Route::get('/book', 'App\Http\Controllers\BookController@getBook')->middleware('auth')->name('book');
 Route::post('/book', 'App\Http\Controllers\BookController@postBook');

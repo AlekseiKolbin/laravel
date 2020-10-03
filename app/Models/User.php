@@ -49,4 +49,14 @@ class User extends Authenticatable
     {
       return $this->hasMany('App\Models\Library', 'profile_id');
     }
+
+    public function trust()
+    {
+      return $this->hasMany('App\Models\Trust');
+    }
+
+    public function isTrusted()
+    {
+      return $this->is_trust === 1;
+    }
 }
