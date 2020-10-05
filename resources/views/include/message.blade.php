@@ -1,6 +1,5 @@
 @foreach($datas as $data)
 <div class="card">
-  <div id="load_mes">
     <ul class="list-group list-group-flush">
       <li class="list-group-item"><a href="{{ route('profile', ['id' => $data->profile_id]) }}">Пользователь №: {{$data->profile_id}}</a></li>
       <li class="list-group-item">Заголовок сообщения: {{ $data->title }}</li>
@@ -69,6 +68,5 @@
       </form>
   @endif
   @endif
-</div>
 </div><br>
 @endforeach
