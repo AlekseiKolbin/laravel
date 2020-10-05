@@ -12,22 +12,27 @@ class ProfileController extends Controller
 {
   public function getProfile($id)
   {
-    $user = User::where('id', $id)->first();
-    $trust = Trust::where('trusted_id', $id)->get();
-    $datas = Message::where('user_id', $user->id)->get()->sortByDesc('created_at')->forPage(0, 5);
-    if (!Auth::user())
+    if(Auth::guest())
     {
-      abort(404);
+      $user = User::where('id', $id)->first();
+      $datas = Message::where('user_id', $user->id)->get()->sortByDesc('created_at')->forPage(0, 5);
+      return view('user', compact('user', 'datas'));
     }
-    $acsess = Trust::where('trusted_id', $id)->where('user_id', Auth::user()->id)->get();
-    if ($acsess->isEmpty())
+    if (Auth::user())
     {
-      $text = 'Дать доступ к библиотеке';
+      $user = User::where('id', $id)->first();
+      $datas = Message::where('user_id', $user->id)->get()->sortByDesc('created_at')->forPage(0, 5);
+      $trust = Trust::where('trusted_id', $id)->get();
+      $acsess = Trust::where('trusted_id', $id)->where('user_id', Auth::user()->id)->get();
+      if ($acsess->isEmpty())
+      {
+        $text = 'Дать доступ к библиотеке';
+      }
+      else
+      {
+        $text = 'Оключить доступ к библиотеке';
+      }
+      return view('user', compact('user', 'datas', 'trust', 'text'));
     }
-    else
-    {
-      $text = 'Оключить доступ к библиотеке';
-    }
-    return view('user', compact('user', 'datas', 'trust', 'text'));
   }
 }

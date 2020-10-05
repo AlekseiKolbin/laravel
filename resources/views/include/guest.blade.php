@@ -20,4 +20,4 @@
     </ul>
   </div>
 </div>
-@endforeach        
+@endforeach
