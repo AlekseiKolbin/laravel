@@ -15,7 +15,7 @@ class ProfileController extends Controller
     $user = User::where('id', $id)->first();
     $trust = Trust::where('trusted_id', $id)->get();
     $datas = Message::where('user_id', $user->id)->get()->sortByDesc('created_at')->forPage(0, 5);
-    if (!$user)
+    if (!Auth::user())
     {
       abort(404);
     }
