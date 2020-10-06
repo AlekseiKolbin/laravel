@@ -45,7 +45,6 @@
       </li>
     </ul>
     @if(Auth::user())
-    @if(Auth::user()->id == $user)
     <form method="post" action="{{ route('reply', ['messageId' => $data->id]) }}">
       @csrf
         <div class="form-group row">
@@ -66,7 +65,6 @@
           </div>
         </div>
       </form>
-  @endif
   @endif
 </div><br>
 @endforeach
